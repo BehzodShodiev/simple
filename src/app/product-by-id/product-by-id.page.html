@@ -1,0 +1,38 @@
+<ion-header mode="ios">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title class="header__title" *ngIf="!isLoading">{{prodInfo.name}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ng-container *ngIf="!isLoading">
+    <ion-card class="prod__card"> 
+      <img class="prod__card__pic" [src]="prodInfo.image" alt="prod_pic">
+      <ion-card-header>
+        <ion-card-title class="prod__card__title">{{prodInfo.name}}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p>{{prodInfo.description}}</p>
+        <div class="prod__card__div">
+          <ion-button (click)="amountCalc(100)">$100</ion-button>
+          <ion-button (click)="amountCalc(10)">$10</ion-button>
+          <ion-button (click)="quantityCalc(2.2)">2.2qty</ion-button>
+          <ion-button (click)="quantityCalc(9)">9qty</ion-button>
+        </div>
+        <div class="prod__card__div--input">
+          <ion-item>
+            <ion-label position="stacked">Amount, $</ion-label>
+            <ion-input type="number" [(ngModel)]="amount" (ionInput)="amountChange($event)"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked">Quantity</ion-label>
+            <ion-input type="number" [(ngModel)]="quantity" (ionInput)="quantityChange($event)"></ion-input>
+          </ion-item>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </ng-container>
+</ion-content>
